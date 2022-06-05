@@ -15,7 +15,7 @@ public class Main {
 		int qtdLoop =1;
         for(int i=0 ;i<qtdLoop;i++) {
         	start = System.currentTimeMillis();
-        	s1.getAllValoresPossiveis();
+        	s1.getValoresPossiveis(0, 0, s1.tabuleiro);
         	end = System.currentTimeMillis();
         	tempo=end-start;
         	somaTempo+=tempo;

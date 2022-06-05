@@ -93,10 +93,20 @@ import java.util.ArrayList;
 					}
 					
 				});
+						
 				t1.start(); t2.start(); t3.start(); //Executa as threads em paralelo
 			       try {
 					t1.join();t2.join();  t3.join();//Espera que as threads terminem
 				} catch (InterruptedException e) {}
+			       
+			       /*for(int i=((linha/3)*3);i<((linha/3)*3 + 3);i++) {
+						for (int j=((coluna/3)*3);j<((coluna/3)*3 + 3);j++) {
+							//System.out.println("ola thread 3 - " + i +","+j);
+							if(tabuleiro[i][j]!=0) {
+								listGrid.add(tabuleiro[i][j]);
+							}	
+						}					
+					}*/
 			       for(int candidato = 1;candidato < 10; candidato++) {
 			    	   if(!listLinha.contains(candidato) && !listColuna.contains(candidato) &&
 			    			   !listGrid.contains(candidato)) {
