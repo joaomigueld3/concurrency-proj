@@ -87,15 +87,7 @@ class MergeSort {
         merge(p1,p2,arr);
     }
     
-    public static void runMergeNormal() {
-    	
-    }
-    public static void runMergeSimples() {
-    	
-    }
-    public static void runMergeAvancado(){
-    	
-    }
+   
     public static void main(String args[]) {
         Random r = new Random(123456789L);
         int arr[] = new int[1000000];
@@ -120,9 +112,6 @@ class MergeSort {
         	System.out.println("Tempo de execução : " + (tempo) + "ms");
         }
         System.out.println("tempo medio: "+ (somaTempo/200)+" ms");
-        
-        
-        
         
         System.out.println("Testando ordenacao");
        // for (int c=0;c<arr.length;c++) { System.out.print(arr[c]+" ");}

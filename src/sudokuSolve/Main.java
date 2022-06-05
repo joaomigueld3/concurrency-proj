@@ -16,15 +16,15 @@ public class Main {
 		getValores = s1.getValoresPossiveis(0, 0, s1.tabuleiro);
         for(int i=0 ;i<200;i++) {
         	start = System.nanoTime();
-        	s1.getValoresPossiveis(0, 0, s1.tabuleiro);
+        	s1.getInParallel(0, 0, s1.tabuleiro);
         	end = System.nanoTime();
         	tempo=end-start;
         	somaTempo+=tempo;
-        	System.out.println("Tempo de execução : " + (tempo) + "ns");
+        	//System.out.println("Tempo de execução : " + (tempo) + "ns");
         }
         System.out.println("tempo medio: "+ (somaTempo/200)+" ns");
 		
-        System.out.println();
+        System.out.println("getInParallel: "+ s1.getInParallel(0, 0, s1.tabuleiro));
 
 	}
 

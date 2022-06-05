@@ -49,30 +49,86 @@ import java.util.ArrayList;
 				}
 				return listRes;			
 		}
-		public boolean verificaLinha() {
-			return true;
-		}
 		
+		public ArrayList<Integer> getInParallel(int linha, int coluna, int[][]tabuleiro){
+			
+				ArrayList<Integer> listRes = new ArrayList<>();
+				ArrayList<Integer> listLinha = new ArrayList<>();	
+				ArrayList<Integer> listColuna= new ArrayList<>();
+				ArrayList<Integer> listGrid= new ArrayList<>();
+				Thread t1 = new Thread(new Runnable() {
+					@Override
+					public void run() {						
+						for(int j=0;j<9;j++) {
+							if(tabuleiro[linha][j]!=0) {
+								listLinha.add(tabuleiro[linha][j]);
+							}
+						}					
+					}		
+				});
+				Thread t2 = new Thread(new Runnable() {
+					@Override
+					public void run() {
+						for(int i=0;i<9;i++) {
+							if(tabuleiro[i][coluna]!=0) {
+								listColuna.add(tabuleiro[i][coluna]);
+							}
+						}						
+					}
+					
+				});
+				Thread t3 = new Thread(new Runnable() {
+					@Override
+					public void run() {
+						for(int i=((linha/3)*3);i<((linha/3)*3 + 3);i++) {
+							for (int j=((coluna/3)*3);j<((coluna/3)*3 + 3);j++) {
+								if(tabuleiro[i][j]!=0) {
+									listGrid.add(tabuleiro[i][j]);
+								}	
+							}					
+						}					
+					}
+					
+				});
+				t1.start(); t2.start(); t3.start(); //Executa as threads em paralelo
+			       try {
+					t1.join();t2.join();  t3.join();//Espera que as threads terminem
+				} catch (InterruptedException e) {}
+			       for(int candidato = 1;candidato < 10; candidato++) {
+			    	   if(!listLinha.contains(candidato) && !listColuna.contains(candidato) &&
+			    			   !listGrid.contains(candidato)) {
+			    		   listRes.add(candidato);
+			    	   }
+			       }
+							
+			return listRes;
+		}
 		public ArrayList<Integer> getValoresPossiveis(int linha, int coluna, int[][] tabuleiro){
 			ArrayList<Integer> listRes = new ArrayList<>();			
 			for(int candidato = 1; candidato < 10; candidato++) {
-				boolean listaContains=true;
-				Thread t1 = new Thread( () -> {
-		           //  listaContains = getLinhaLista(linha, tabuleiro).contains(candidato);
-		        });
-				if(!listaContains && 
-						!getColunaLista(coluna, tabuleiro).contains(candidato) && 
+				if(!getLinhaLista(linha, tabuleiro).contains(candidato) && 
+						!getColunaLista(coluna, tabuleiro).contains(candidato) &&
 						!getGridLista(linha, coluna, tabuleiro).contains(candidato)) {
 					listRes.add(candidato);
 				}
-			}
-			
+			}			
 				return listRes;			
 		}
 		
 		
 		
-		
+		/*public boolean verificaLinha(int linha, int[][]tabuleiro, int candidato) {
+		if(!getLinhaLista(linha, tabuleiro).contains(candidato)) return true;
+		else return false;			
+	}
+	public boolean verificaColuna(int coluna, int[][]tabuleiro, int candidato) {
+		if(!getColunaLista(coluna, tabuleiro).contains(candidato)) return true;
+		else return false;			
+	}
+	public boolean verificaGrid(int linha, int coluna, int[][]tabuleiro, int candidato) {
+		if(!getGridLista(linha, coluna, tabuleiro).contains(candidato)) return true;
+		else return false;			
+	}*/
 		public  String toString() { // retona String do sudoku (imprime matriz)
 			// getTotalTime();
 			// initializaSudoku(difficulty.NORMAL);

@@ -20,7 +20,7 @@ class Fibonacci extends Thread
             try
             {
                 fibo = fibo1 + fibo2;
-                if(fibo>1000000)
+                if(fibo>100000)
                 {
                     out.close();
                     break;
@@ -55,7 +55,7 @@ class Prime extends Thread
         {
             try
             {
-                if(prime>1000000)
+                if(prime>100000)
                 {
                     out1.close();
                     break;
