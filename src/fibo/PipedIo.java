@@ -20,13 +20,13 @@ class Fibonacci extends Thread
             try
             {
                 fibo = fibo1 + fibo2;
-                if(fibo>100000)
+                if(fibo>1000000)
                 {
                     out.close();
                     break;
                 }
                 out.write(fibo);
-                sleep(100);
+                sleep(0);
             }
             catch(Exception e)
             {
@@ -55,7 +55,7 @@ class Prime extends Thread
         {
             try
             {
-                if(prime>100000)
+                if(prime>1000000)
                 {
                     out1.close();
                     break;
@@ -86,7 +86,7 @@ class Prime extends Thread
 public class PipedIo
 {
     public static void main(String[] args) throws Exception
-    {
+    {	long start = System.currentTimeMillis();
         Thread t=Thread.currentThread();
         t.setName("Main");
         System.out.println(t.getName() + " thread Started...");
@@ -108,6 +108,9 @@ public class PipedIo
             }
             fib=fpr.read();
         }
+        fpr.close();ppr.close();
         System.out.println(t.getName() + " thread exiting");
+        long end = System.currentTimeMillis();
+        System.out.println("tempo de execução: "+(end-start)+"ms");
     }
 }

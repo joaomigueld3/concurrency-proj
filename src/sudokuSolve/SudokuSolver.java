@@ -49,14 +49,16 @@ import java.util.ArrayList;
 				}
 				return listRes;			
 		}
-		public 
+		public boolean verificaLinha() {
+			return true;
+		}
 		
 		public ArrayList<Integer> getValoresPossiveis(int linha, int coluna, int[][] tabuleiro){
 			ArrayList<Integer> listRes = new ArrayList<>();			
 			for(int candidato = 1; candidato < 10; candidato++) {
 				boolean listaContains=true;
 				Thread t1 = new Thread( () -> {
-		             listaContains = getLinhaLista(linha, tabuleiro).contains(candidato);
+		           //  listaContains = getLinhaLista(linha, tabuleiro).contains(candidato);
 		        });
 				if(!listaContains && 
 						!getColunaLista(coluna, tabuleiro).contains(candidato) && 

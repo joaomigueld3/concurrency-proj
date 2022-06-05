@@ -28,9 +28,9 @@ public class FiboPrimeNormal {
 	//fazer lista de fib até fib(n) < 100000
 	//verificar se cada um é primo, se for add em outra lista
 	private int[] listFibAux() {
-		int[] listRes = new int[27];
+		int[] listRes = new int[32];
 		for(int i=0;i<listRes.length;i++) {
-			if(fib(i)>100000) {
+			if(fib(i)>1000000) {
 				break;
 			}
 			listRes[i]=fib(i);
