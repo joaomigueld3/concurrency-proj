@@ -12,20 +12,17 @@ public class Main {
 		System.out.println(s1.getGridLista(0, 0, s1.tabuleiro));
 		System.out.println("Iniciando..");
 		long start,end,tempo,somaTempo =0;
-		ArrayList<Integer> getValores = new ArrayList<>();
-		getValores = s1.getValoresPossiveis(0, 0, s1.tabuleiro);
-        for(int i=0 ;i<200;i++) {
-        	start = System.nanoTime();
-        	s1.getInParallel(0, 0, s1.tabuleiro);
-        	end = System.nanoTime();
+		int qtdLoop =1;
+        for(int i=0 ;i<qtdLoop;i++) {
+        	start = System.currentTimeMillis();
+        	s1.getAllValoresPossiveis();
+        	end = System.currentTimeMillis();
         	tempo=end-start;
         	somaTempo+=tempo;
         	//System.out.println("Tempo de execução : " + (tempo) + "ns");
         }
-        System.out.println("tempo medio: "+ (somaTempo/200)+" ns");
-		
-        System.out.println("getInParallel: "+ s1.getInParallel(0, 0, s1.tabuleiro));
-
+        System.out.println("tempo medio: "+ (somaTempo/qtdLoop)+" ms");		
+        //System.out.println("getAllValoresPossiveis: "+ s1.getAllValParallel());
 	}
 
 }

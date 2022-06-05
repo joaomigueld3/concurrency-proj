@@ -60,6 +60,7 @@ import java.util.ArrayList;
 					@Override
 					public void run() {						
 						for(int j=0;j<9;j++) {
+							//System.out.println("ola thread 1 - "+j);
 							if(tabuleiro[linha][j]!=0) {
 								listLinha.add(tabuleiro[linha][j]);
 							}
@@ -70,6 +71,7 @@ import java.util.ArrayList;
 					@Override
 					public void run() {
 						for(int i=0;i<9;i++) {
+							//System.out.println("ola thread 2 - "+i);
 							if(tabuleiro[i][coluna]!=0) {
 								listColuna.add(tabuleiro[i][coluna]);
 							}
@@ -82,6 +84,7 @@ import java.util.ArrayList;
 					public void run() {
 						for(int i=((linha/3)*3);i<((linha/3)*3 + 3);i++) {
 							for (int j=((coluna/3)*3);j<((coluna/3)*3 + 3);j++) {
+								//System.out.println("ola thread 3 - " + i +","+j);
 								if(tabuleiro[i][j]!=0) {
 									listGrid.add(tabuleiro[i][j]);
 								}	
@@ -103,6 +106,20 @@ import java.util.ArrayList;
 							
 			return listRes;
 		}
+		
+		public ArrayList<ArrayList<Integer>> getAllValParallel(){
+			int[][] tabAux = copy(tabuleiro);
+			ArrayList<ArrayList<Integer>> listRes = new ArrayList<>();
+			for(int i = 0 ; i < 9 ; i++) {
+				for(int j = 0 ; j < 9 ; j++) {
+					if(tabAux[i][j]==0) {
+						listRes.add(getInParallel(i, j, tabuleiro));
+					}
+				}
+			}
+			return listRes;
+			
+		}
 		public ArrayList<Integer> getValoresPossiveis(int linha, int coluna, int[][] tabuleiro){
 			ArrayList<Integer> listRes = new ArrayList<>();			
 			for(int candidato = 1; candidato < 10; candidato++) {
@@ -113,22 +130,35 @@ import java.util.ArrayList;
 				}
 			}			
 				return listRes;			
+		}	
+		
+		public static int[][] copy(int[][] src) {
+	        if (src == null) {
+	            return null;
+	        }
+	 
+	        int[][] copy = new int[src.length][];
+	        for (int i = 0; i < src.length; i++) {
+	            copy[i] = src[i].clone();
+	        }
+	 
+	        return copy;
+	    }
+		
+		public ArrayList<ArrayList<Integer>> getAllValoresPossiveis(){
+			int[][] tabAux = copy(tabuleiro);
+			ArrayList<ArrayList<Integer>> listRes = new ArrayList<>();
+			for(int i = 0 ; i < 9 ; i++) {
+				for(int j = 0 ; j < 9 ; j++) {
+					if(tabAux[i][j]==0) {
+						listRes.add(getValoresPossiveis(i, j, tabuleiro));
+					}
+				}
+			}
+			return listRes;
 		}
 		
 		
-		
-		/*public boolean verificaLinha(int linha, int[][]tabuleiro, int candidato) {
-		if(!getLinhaLista(linha, tabuleiro).contains(candidato)) return true;
-		else return false;			
-	}
-	public boolean verificaColuna(int coluna, int[][]tabuleiro, int candidato) {
-		if(!getColunaLista(coluna, tabuleiro).contains(candidato)) return true;
-		else return false;			
-	}
-	public boolean verificaGrid(int linha, int coluna, int[][]tabuleiro, int candidato) {
-		if(!getGridLista(linha, coluna, tabuleiro).contains(candidato)) return true;
-		else return false;			
-	}*/
 		public  String toString() { // retona String do sudoku (imprime matriz)
 			// getTotalTime();
 			// initializaSudoku(difficulty.NORMAL);
@@ -149,6 +179,18 @@ import java.util.ArrayList;
 			}
 			return s;
 		}
+		/*public boolean verificaLinha(int linha, int[][]tabuleiro, int candidato) {
+		if(!getLinhaLista(linha, tabuleiro).contains(candidato)) return true;
+		else return false;			
+	}
+	public boolean verificaColuna(int coluna, int[][]tabuleiro, int candidato) {
+		if(!getColunaLista(coluna, tabuleiro).contains(candidato)) return true;
+		else return false;			
+	}
+	public boolean verificaGrid(int linha, int coluna, int[][]tabuleiro, int candidato) {
+		if(!getGridLista(linha, coluna, tabuleiro).contains(candidato)) return true;
+		else return false;			
+	}*/
     		 
     		
 	
