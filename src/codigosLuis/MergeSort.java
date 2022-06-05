@@ -57,10 +57,10 @@ class MergeSort {
         int p1[] = Arrays.copyOfRange(arr, 0, meio);
         int p2[] = Arrays.copyOfRange(arr, meio, arr.length);
         Thread t1 = new Thread( () -> {
-            mergesort(p1);
+            mergesort(p1);            
         });
         Thread t2 = new Thread( () -> {
-            mergesort(p2);
+            mergesort(p2);            
         });
         t1.start();t2.start();
         try { t1.join(); t2.join(); } catch (Exception ex) { System.err.println(ex); } 
@@ -78,9 +78,11 @@ class MergeSort {
         int p2[] = Arrays.copyOfRange(arr, meio, arr.length);
         Thread t1 = new Thread( () -> {
             pMergeSort2(p1,nivel-1);
+            System.out.println("ola thread 1");
         });
         Thread t2 = new Thread( () -> {
             pMergeSort2(p2,nivel -1 );
+            System.out.println("ola thread 2");
         });
         t1.start();t2.start();
         try { t1.join(); t2.join(); } catch (Exception ex) { System.err.println(ex); } 
@@ -103,7 +105,7 @@ class MergeSort {
         //mergesort(arr);
         //pMergeSort1(arr);
         long start,end,tempo,somaTempo =0;
-        for(int i=0 ;i<200;i++) {
+        for(int i=0 ;i<1;i++) {
         	start = System.currentTimeMillis();
         	pMergeSort2(arr,3);
         	end = System.currentTimeMillis();
