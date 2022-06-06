@@ -12,7 +12,7 @@ public class Main {
 		System.out.println(s1.getGridLista(0, 0, s1.tabuleiro));
 		System.out.println("Iniciando..");
 		long start,end,tempo,somaTempo =0;
-		int qtdLoop =1;
+		int qtdLoop =1000000;
         for(int i=0 ;i<qtdLoop;i++) {
         	start = System.currentTimeMillis();
         	s1.getValoresPossiveis(0, 0, s1.tabuleiro);
