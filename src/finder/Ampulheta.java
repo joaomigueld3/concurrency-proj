@@ -38,18 +38,21 @@ public class Ampulheta {
 			//System.out.println();		
 		//return matriz;
 	}
-	static void ampulhetaUpper(String[][] matriz) {
+	static void ampulhetaTop(int a, String[][] matriz) {
+		if(a==matriz.length-1) {return;	}
+		else {
+			matriz[0][a]="1";
+			ampulhetaTop(a+1,matriz);
+		}
+	}
+	static void ampulhetaRight(String[][] matriz) {
 		for(int a=0;a<matriz.length;a++) {
 			for(int b=0;b<matriz.length;b++) {
-				if(a==b|| a==0 || a==matriz.length-1 ) {
-					matriz[a][b]="8";
-					//System.out.print(matriz[a][b]+" ");
-					
-				}
-			}
-		}	
+				if (a==b) matriz[a][b]="2";
+			}				
 	}
-	static void ampulhetaLower(String[][] matriz) {
+	}
+	static void ampulhetaLeft(String[][] matriz) {
 		for(int c=0;c<matriz.length;c++) {
 			int k=0;
 			for(int d=matriz.length-1;d>=0;d--) {
@@ -61,15 +64,34 @@ public class Ampulheta {
 			}
 		}
 	}
+	static void ampulhetaBottom(int a,String[][] matriz) {
+		if(a==matriz.length-1) {return;	}
+		else{
+			matriz[matriz.length-1][a]="4";
+			ampulhetaBottom(a+1,matriz);			
+	}
+	}
 	static void ampulhetaParalelo(String[][] matriz) {
 		Thread t1 = new Thread( () -> {
-			ampulhetaUpper(matriz);           
+			ampulhetaTop(0, matriz);
+			//System.out.println("ola thread 1");
         });
 		Thread t2 = new Thread( () -> {
-			ampulhetaLower(matriz);           
+			ampulhetaLeft(matriz);          
+			//System.out.println("ola thread 2");
         });
-		t1.start();t2.start();
-        try { t1.join(); t2.join(); } catch (Exception ex) { System.err.println(ex); }
+		Thread t3 = new Thread( () -> {
+			ampulhetaRight(matriz);
+			//System.out.println("ola thread 3");
+        });
+		Thread t4 = new Thread( () -> {
+			ampulhetaBottom(0, matriz);
+			//System.out.println("ola thread 4");
+        });
+		
+		
+		t1.start();t2.start(); t3.start(); t4.start();
+        try { t1.join(); t2.join(); t3.join(); t4.join();} catch (Exception ex) { System.err.println(ex); }
 	}
 	
 	public static void main(String[] args) {
