@@ -113,7 +113,7 @@ public class ItemFinder {
 		int[][] entry = new int[20000][20000];
 		int posX = r.nextInt(100);int posY = r.nextInt(100);
 		//System.out.println(r.nextInt(100)+", "+r.nextInt(100));
-		entry[19000][1000]=1;
+		entry[12000][1000]=1;
 		int meio = entry.length/2;
 		int fim = entry.length-1;
 		int p1[] = new int[2];
