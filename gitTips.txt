@@ -1,0 +1,13 @@
+1. Limpe o cache do Git:
+Este comando remove tudo do índice do Git para que possamos readicionar apenas o que importa. A opção --cached é crucial, pois garante que seus arquivos locais não serão apagados.
+
+Bash
+
+git rm -r --cached .
+rm: comando de remover.
+
+-r: recursivo (para remover pastas inteiras como bin e .settings).
+
+--cached: remove apenas do índice do Git, não do seu disco.
+
+.: representa o diretório atual (todo o projeto).
