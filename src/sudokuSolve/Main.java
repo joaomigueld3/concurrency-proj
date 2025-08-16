@@ -19,10 +19,11 @@ public class Main {
         	end = System.currentTimeMillis();
         	tempo=end-start;
         	somaTempo+=tempo;
-        	//System.out.println("Tempo de execução : " + (tempo) + "ns");
+        	//System.out.println("Tempo de execuï¿½ï¿½o : " + (tempo) + "ns");
         }
         System.out.println("tempo medio: "+ (somaTempo/qtdLoop)+" ms");		
         //System.out.println("getAllValoresPossiveis: "+ s1.getAllValParallel());
+		// test
 	}
 
 }

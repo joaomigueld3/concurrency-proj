@@ -1,0 +1,15 @@
+# Arquivos compilados do Java
+/bin/
+*.class
+
+# Arquivos de configuração do Eclipse
+.project
+.classpath
+.settings/
+
+# Arquivos de log
+*.log
+
+# Outros arquivos temporários ou de sistema
+.DS_Store
+Thumbs.db
